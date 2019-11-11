@@ -2,7 +2,6 @@ class BooksController < ApplicationController
     def index
       @books = Book.all
       @book = Book.new
-      @book_post = Book.new
     end
 
     def show
@@ -14,13 +13,12 @@ class BooksController < ApplicationController
     end
 
     def create
-      @book_post = Book.new(book_params)
-      if @book_post.save
+      @book = Book.new(book_params)
+      if @book.save
         flash[:notice] = "Book was successfully created."
-        redirect_to book_path(@book_post.id)
+        redirect_to book_path(@book.id)
       else
         @books = Book.all
-        @book = Book.new
         render 'index'
       end
     end
@@ -46,11 +44,13 @@ class BooksController < ApplicationController
 
 
   private
-  def book_params
-    params.require(:book).permit(:title, :body)
-  end
+    def book_params
+      params.require(:book).permit(:title, :body)
+    end
 
 
 
 
 end
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'

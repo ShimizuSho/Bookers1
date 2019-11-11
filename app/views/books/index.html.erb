@@ -41,10 +41,10 @@
 
 <%= form_for(@book) do |f| %>
 
-<% if @book_post.errors.any? %>
+<% if @book.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
  	 <ul>
- 		<% @book_post.errors.full_messages.each do |message| %>
+ 		<% @book.errors.full_messages.each do |message| %>
  			<li><%= message %></li>
  		<% end %>
  	 </ul>
@@ -56,7 +56,7 @@
 	<%= f.text_field :title %>
 
 	<p>Body</p>
-	<%= f.text_field :body %><br>
+	<%= text_area :body %><br>
 
 	<%= f.submit 'Create Book' %>
 
